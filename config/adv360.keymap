@@ -22,6 +22,13 @@
         // The bash script "bin/get_version" will add a macro that
         // outputs the version of the firmware
         #include "version.dtsi"
+
+        td_sk: tap_dance_sticky_key {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&sk LSHIFT>, <&kp CAPSLOCK>;
+        };
     };
 
     keymap {
@@ -29,11 +36,11 @@
 
         default_layer {
             bindings = <
-                &none        &kp N1  &kp N2    &kp N3     &kp N4  &kp N5 &tog LAYER_KEYPAD                                                                    &mo LAYER_MOD &kp N6    &kp N7   &kp N8    &kp N9  &kp N0       &none
-                &kp GRAVE    &kp Q   &kp W     &kp E      &kp R   &kp T  &kp DEL                                                                              &kp MINUS     &kp Y     &kp U    &kp I     &kp O   &kp P        &none
-                &kp TAB      &kp A   &kp S     &kp D      &kp F   &kp G  &kp EQUAL         &sk LCTRL           &sk RGUI         &sk LGUI            &sk RCTRL &kp SQT       &kp H     &kp J    &kp K     &kp L   &kp SEMI     &kp BSLH
-                &kp LBKT     &kp Z   &kp X     &kp C      &kp V   &kp B                                        &sk LSHIFT       &sk RSHIFT                                  &kp N     &kp M    &kp COMMA &kp DOT &kp FSLH     &kp RBKT
-                &mo LAYER_FN &none   &none     &kp LEFT   &kp RIGHT      &kp BSPC          &kp ESC             &sk LALT         &sk RALT            &kp ENTER &kp SPACE     &kp UP    &kp DOWN &none     &none   &mo LAYER_FN
+                &none        &kp N1  &kp N2    &kp N3     &kp N4    &kp N5 &tog LAYER_KEYPAD                                                                    &mo LAYER_MOD &kp N6    &kp N7    &kp N8    &kp N9   &kp N0       &none
+                &kp GRAVE    &kp Q   &kp W     &kp E      &kp R     &kp T  &kp DEL                                                                              &kp MINUS     &kp Y     &kp U     &kp I     &kp O    &kp P        &none
+                &kp TAB      &kp A   &kp S     &kp D      &kp F     &kp G  &kp EQUAL         &sk LCTRL           &sk RGUI         &sk LGUI            &sk RCTRL &kp APOS      &kp H     &kp J     &kp K     &kp L    &kp SEMI     &kp BSLH
+                &td_sk       &kp Z   &kp X     &kp C      &kp V     &kp B                                        &kp LBKT         &kp RBKT                                    &kp N     &kp M     &kp COMMA &kp DOT  &kp FSLH     &td_sk
+                &mo LAYER_FN &none   &none     &kp LEFT   &kp RIGHT        &kp BSPC          &kp ESC             &sk LALT         &sk RALT            &kp ENTER &kp SPACE               &kp UP    &kp DOWN  &none    &none        &mo LAYER_FN
             >;
         };
 
