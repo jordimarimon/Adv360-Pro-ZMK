@@ -37,15 +37,86 @@
                 ;
         };
 
+        // double L: "l·l"
         double_l: double_l {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_tap &kp L &kp RA(X) &kp L>;
         };
+
+        // letter A with the grave accent
+        a_grave: a_grave {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp GRAVE &kp A>;
+        };
+
+        // letter A with the accute accent
+        a_accute: a_accute {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp APOS &kp A>;
+        };
+
+        // letter O with the grave accent
+        o_grave: o_grave {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp GRAVE &kp O>;
+        };
+
+        // letter O with the accute accent
+        o_accute: o_accute {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp APOS &kp O>;
+        };
+
+        // letter E with the grave accent
+        e_grave: e_grave {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp GRAVE &kp E>;
+        };
+
+        // letter E with the accute accent
+        e_accute: e_accute {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp APOS &kp E>;
+        };
+
+        // letter I with the dieresis
+        i_umlaut: i_umlaut {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp LS(APOS) &kp I>;
+        };
+
+        // letter I with the accute accent
+        i_accute: i_accute {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp APOS &kp I>;
+        };
+
+        // letter U with the dieresis
+        u_umlaut: u_umlaut {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp LS(APOS) &kp U>;
+        };
+
+        // letter U with the accute accent
+        u_accute: u_accute {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp APOS &kp U>;
+        };
     };
 
     behaviors {
-        // Shift to toggle between caps and no caps
+        // Shift to toggle between caps
         td_sk: tap_dance_sticky_key {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -92,50 +163,142 @@
             bindings = <&kp L>, <&double_l>;
             mods = <(MOD_LALT)>;
         };
+
+        // Depending on the ALT key press, will output
+        // the letter A with the accute accent or the grave accent
+        a_mm1: a_mod_morph_1 {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&a_grave>, <&a_accute>;
+            mods = <(MOD_RALT)>;
+        };
+
+        // Oututs the letter or with an accent
+        a_mm: a_mod_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp A>, <&a_mm1>;
+            mods = <(MOD_LALT|MOD_RALT)>;
+        };
+
+        // Depending on the ALT key press, will output
+        // the letter O with the accute accent or the grave accent
+        o_mm1: o_mod_morph_1 {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&o_grave>, <&o_accute>;
+            mods = <(MOD_RALT)>;
+        };
+
+        // Oututs the letter or with an accent
+        o_mm: o_mod_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp O>, <&o_mm1>;
+            mods = <(MOD_LALT|MOD_RALT)>;
+        };
+
+        // Depending on the ALT key press, will output
+        // the letter E with the accute accent or the grave accent
+        e_mm1: e_mod_morph_1 {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&e_grave>, <&e_accute>;
+            mods = <(MOD_RALT)>;
+        };
+
+        // Oututs the letter or with an accent
+        e_mm: e_mod_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp E>, <&e_mm1>;
+            mods = <(MOD_LALT|MOD_RALT)>;
+        };
+
+        // Depending on the ALT key press, will output
+        // the letter I with the accute accent or the dieresis
+        i_mm1: i_mod_morph_1 {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&i_umlaut>, <&i_accute>;
+            mods = <(MOD_RALT)>;
+        };
+
+        // Oututs the letter or with an accent
+        i_mm: i_mod_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp I>, <&i_mm1>;
+            mods = <(MOD_LALT|MOD_RALT)>;
+        };
+
+        // Depending on the ALT key press, will output
+        // the letter U with the accute accent or the dieresis
+        u_mm1: u_mod_morph_1 {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&u_umlaut>, <&u_accute>;
+            mods = <(MOD_RALT)>;
+        };
+
+        // Oututs the letter or with an accent
+        u_mm: u_mod_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp U>, <&u_mm1>;
+            mods = <(MOD_LALT|MOD_RALT)>;
+        };
+
+        // Outputs "/" or when holding LALT "¿"
+        fslh_mm: fslh_mod_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp FSLH>, <&kp RA(FSLH)>;
+            mods = <(MOD_LALT)>;
+        };
     };
 
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
-            // RA(FSLSH) = ¿
             // RA(N1) = ¡
             bindings = <
-                &none        &kp N1       &kp N2       &kp N3       &kp N4       &kp N5       &tog LAYER_KEYPAD                                                &mo LAYER_MOD          &kp N6 &kp N7        &kp N8        &kp N9  &kp N0        &none
-                &none        &kp Q        &kp W        &kp E        &kp R        &kp T        &kp DEL                                                          &kp MINUS              &kp Y  &kp U         &kp I         &kp O   &kp BSLH      &none
-                &kp TAB      &kp A        &kp S        &kp D        &kp F        &kp G        &eq_mm            &kp LBKT  &sk LGUI  &sk RGUI   &kp RBKT        &qt_mm                 &kp H  &kp J         &kp K         &l_mm   &kp P         &kp SEMI
-                &td_sk       &kp Z        &kp X        &c_mm        &kp V        &kp B                                    &sk LCTRL &sk RCTRL                                         &n_mm  &kp M         &kp COMMA     &kp DOT &kp FSLH      &td_sk
-                &mo LAYER_FN &none        &none        &kp LEFT     &kp RIGHT                 &kp BSPC          &kp ESC   &sk LALT  &sk RALT   &kp ENTER       &kp SPACE                     &kp UP        &kp DOWN      &none   &none         &mo LAYER_FN
+                &none        &kp N1       &kp N2       &kp N3       &kp N4       &kp N5       &tog LAYER_KEYPAD                                                &mo LAYER_MOD          &kp N6    &kp N7        &kp N8        &kp N9    &kp N0   &none
+                &none        &kp Q        &kp W        &e_mm        &kp R        &kp T        &kp DEL                                                          &kp MINUS              &kp Y     &u_mm         &i_mm         &o_mm     &kp BSLH &none
+                &kp TAB      &a_mm        &kp S        &kp D        &kp F        &kp G        &eq_mm            &kp LBKT  &sk LGUI  &sk RGUI   &kp RBKT        &qt_mm                 &kp H     &kp J         &kp K         &l_mm     &kp P    &kp SEMI
+                &td_sk       &kp Z        &kp X        &c_mm        &kp V        &kp B                                    &sk LCTRL &sk RCTRL                                         &n_mm     &kp M         &kp COMMA     &kp DOT   &fslh_mm &td_sk
+                &mo LAYER_FN &none        &none        &kp LEFT     &kp RIGHT                 &kp BSPC          &kp ESC   &sk LALT  &sk RALT   &kp ENTER       &kp SPACE                        &kp UP        &kp DOWN      &none     &none    &mo LAYER_FN
             >;
         };
 
         layer_keypad {
             bindings = <
-                &trans       &trans       &trans       &trans       &trans       &trans       &trans                                                           &trans                 &trans    &trans        &trans        &trans    &trans        &trans
-                &none        &none        &none        &none        &none        &none        &trans                                                           &trans                 &none     &kp KP_N7     &kp KP_N8     &kp KP_N9 &none         &trans
-                &trans       &none        &none        &none        &none        &none        &trans            &trans    &trans    &trans     &kp KP_NUM      &trans                 &none     &kp KP_N4     &kp KP_N5     &kp KP_N6 &trans        &trans
-                &trans       &none        &none        &none        &none        &none                                    &trans    &trans                                            &kp KP_N0 &kp KP_N1     &kp KP_N2     &kp KP_N3 &trans        &trans
-                &trans       &none        &none        &trans       &trans                    &trans            &trans    &trans    &trans     &trans          &trans                           &trans        &trans        &none     &trans        &trans
+                &trans       &trans       &trans       &trans       &trans       &trans       &trans                                                           &trans                 &trans    &trans        &trans        &trans    &trans   &trans
+                &none        &none        &none        &none        &none        &none        &trans                                                           &trans                 &none     &kp KP_N7     &kp KP_N8     &kp KP_N9 &none    &trans
+                &trans       &none        &none        &none        &none        &none        &trans            &trans    &trans    &trans     &kp KP_NUM      &trans                 &none     &kp KP_N4     &kp KP_N5     &kp KP_N6 &trans   &trans
+                &trans       &none        &none        &none        &none        &none                                    &trans    &trans                                            &kp KP_N0 &kp KP_N1     &kp KP_N2     &kp KP_N3 &trans   &trans
+                &trans       &none        &none        &trans       &trans                    &trans            &trans    &trans    &trans     &trans          &trans                           &trans        &trans        &none     &trans   &trans
             >;
         };
 
         layer_fn {
             bindings = <
-                &kp F1       &kp F2       &kp F3       &kp F4       &kp F5       &kp F6       &trans                                                           &trans                 &kp F7    &kp F8        &kp F9        &kp F10   &kp F11       &kp F12
-                &trans       &trans       &trans       &trans       &trans       &trans       &kp C_VOL_UP                                                     &trans                 &trans    &trans        &trans        &trans    &trans        &trans
-                &trans       &trans       &trans       &trans       &trans       &trans       &kp C_VOL_DN      &trans    &trans    &trans     &kp PRINTSCREEN &kp C_MUTE             &trans    &trans        &trans        &trans    &trans        &trans
-                &trans       &trans       &trans       &trans       &trans       &trans                                   &trans    &trans                                            &trans    &trans        &trans        &trans    &trans        &trans
-                &trans       &trans       &trans       &kp HOME     &kp END                   &trans            &trans    &trans    &trans     &trans          &trans                           &kp PAGE_UP   &kp PAGE_DOWN &trans    &trans        &trans
+                &kp F1       &kp F2       &kp F3       &kp F4       &kp F5       &kp F6       &trans                                                           &trans                 &kp F7    &kp F8        &kp F9        &kp F10   &kp F11  &kp F12
+                &trans       &trans       &trans       &trans       &trans       &trans       &kp C_VOL_UP                                                     &trans                 &trans    &trans        &trans        &trans    &trans   &trans
+                &trans       &trans       &trans       &trans       &trans       &trans       &kp C_VOL_DN      &trans    &trans    &trans     &kp PRINTSCREEN &kp C_MUTE             &trans    &trans        &trans        &trans    &trans   &trans
+                &trans       &trans       &trans       &trans       &trans       &trans                                   &trans    &trans                                            &trans    &trans        &trans        &trans    &trans   &trans
+                &trans       &trans       &trans       &kp HOME     &kp END                   &trans            &trans    &trans    &trans     &trans          &trans                           &kp PAGE_UP   &kp PAGE_DOWN &trans    &trans   &trans
             >;
         };
 
         layer_mod {
             bindings = <
-                &none        &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &none                                                            &trans                 &none       &none       &none         &none     &none         &none
-                &none        &none        &none        &none        &none        &none        &bootloader                                                      &bootloader            &none       &none       &none         &none     &none         &none
-                &none        &none        &none        &none        &none        &none        &none             &none     &none     &bt BT_CLR &none           &rgb_ug RGB_MEFS_CMD 5 &none       &none       &none         &none     &none         &none
-                &none        &none        &none        &none        &none        &none                                    &none     &none                                             &none       &none       &none         &none     &none         &none
-                &none        &none        &none        &none        &none                     &none             &none     &none     &none      &bl BL_TOG      &rgb_ug RGB_TOG                    &bl BL_INC  &bl BL_DEC    &none     &none         &none
+                &none        &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &none                                                            &trans                 &none     &none       &none           &none     &none    &none
+                &none        &none        &none        &none        &none        &none        &bootloader                                                      &bootloader            &none     &none       &none           &none     &none    &none
+                &none        &none        &none        &none        &none        &none        &none             &none     &none     &bt BT_CLR &none           &rgb_ug RGB_MEFS_CMD 5 &none     &none       &none           &none     &none    &none
+                &none        &none        &none        &none        &none        &none                                    &none     &none                                             &none     &none       &none           &none     &none    &none
+                &none        &none        &none        &none        &none                     &none             &none     &none     &none      &bl BL_TOG      &rgb_ug RGB_TOG                  &bl BL_INC  &bl BL_DEC      &none     &none    &none
             >;
         };
     };
