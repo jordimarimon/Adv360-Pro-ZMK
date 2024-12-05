@@ -18,11 +18,28 @@
 #define LAYER_MOD     3
 
 / {
-    behaviors {
-        // The bash script "bin/get_version" will add a macro that
-        // outputs the version of the firmware
-        #include "version.dtsi"
+    macros {
+        // Grave accent by it's own
+        grave: grave {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp GRAVE &kp GRAVE>;
+        };
 
+        // Tilde by it's own
+        tilde: tilde {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LSHFT>
+                , <&macro_tap &kp GRAVE &kp GRAVE>
+                , <&macro_release &kp LSHFT>
+                ;
+        };
+    };
+
+    behaviors {
+        // Shift to toggle between caps and no caps
         td_sk: tap_dance_sticky_key {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -30,11 +47,20 @@
             bindings = <&sk LSHIFT>, <&kp CAPSLOCK>;
         };
 
-        td_q: tap_dance_quotes {
-            compatible = "zmk,behavior-tap-dance";
+        // Single key to write tilde, equals and plus -> operators
+        ops: tilde_equal_plus {
+            compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp RA(SQT)>, <&kp RA(LS(SQT))>;
+            bindings = <&kp EQUAL>, <&tilde>;
+            mods = <(MOD_RALT)>;
+        };
+
+        // Single, double quotes and the grave accent
+        qt_gra: quotes_grave {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp RA(SQT)>, <&grave>;
+            mods = <(MOD_LALT)>;
         };
     };
 
@@ -42,12 +68,14 @@
         compatible = "zmk,keymap";
 
         default_layer {
+            // RA(FSLSH) = ¿
+            // RA(N1) = ¡
             bindings = <
                 &none        &kp N1       &kp N2       &kp N3       &kp N4       &kp N5       &tog LAYER_KEYPAD                                                &mo LAYER_MOD          &kp N6    &kp N7        &kp N8       &kp N9    &kp N0        &none
                 &none        &kp Q        &kp W        &kp E        &kp R        &kp T        &kp DEL                                                          &kp MINUS              &kp Y     &kp U         &kp I        &kp O     &kp BSLH      &none
-                &kp TAB      &kp A        &kp S        &kp D        &kp F        &kp G        &kp EQUAL         &kp LBKT  &sk LGUI  &sk RGUI   &kp RBKT        &td_q                  &kp H     &kp J         &kp K        &kp L     &kp P         &kp SEMI
+                &kp TAB      &kp A        &kp S        &kp D        &kp F        &kp G        &ops              &kp LBKT  &sk LGUI  &sk RGUI   &kp RBKT        &qt_gra                &kp H     &kp J         &kp K        &kp L     &kp P         &kp SEMI
                 &td_sk       &kp Z        &kp X        &kp C        &kp V        &kp B                                    &sk LCTRL &sk RCTRL                                         &kp N     &kp M         &kp COMMA    &kp DOT   &kp FSLH      &td_sk
-                &mo LAYER_FN &kp RA(N)    &kp GRAVE    &kp LEFT     &kp RIGHT                 &kp BSPC          &kp ESC   &sk LALT  &sk RALT   &kp ENTER       &kp SPACE                        &kp UP        &kp DOWN     &kp APOS  &kp RA(COMMA) &mo LAYER_FN
+                &mo LAYER_FN &none        &none        &kp LEFT     &kp RIGHT                 &kp BSPC          &kp ESC   &sk LALT  &sk RALT   &kp ENTER       &kp SPACE                        &kp UP        &kp DOWN     &none     &none         &mo LAYER_FN
             >;
         };
 
@@ -67,7 +95,7 @@
                 &trans       &trans       &trans       &trans       &trans       &trans       &kp PAGE_UP                                                      &trans                 &trans    &trans        &trans       &trans    &trans        &trans
                 &trans       &trans       &trans       &trans       &trans       &trans       &kp PAGE_DOWN     &trans    &trans    &trans     &trans          &kp C_MUTE             &trans    &trans        &trans       &trans    &trans        &trans
                 &trans       &trans       &trans       &trans       &trans       &trans                                   &trans    &trans                                            &trans    &trans        &trans       &trans    &trans        &trans
-                &trans       &trans       &trans       &trans       &trans                    &trans            &trans    &trans    &trans     &kp PRINTSCREEN &trans                           &kp C_VOL_UP  &kp C_VOL_DN &trans    &trans        &trans
+                &trans       &trans       &trans       &kp HOME     &kp END                   &trans            &trans    &trans    &trans     &kp PRINTSCREEN &trans                           &kp C_VOL_UP  &kp C_VOL_DN &trans    &trans        &trans
             >;
         };
 
@@ -76,7 +104,7 @@
                 &none        &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &none                                                            &trans                 &none       &none       &none        &none     &none         &none
                 &none        &none        &none        &none        &none        &none        &bootloader                                                      &bootloader            &none       &none       &none        &none     &none         &none
                 &none        &none        &none        &none        &none        &none        &none             &none     &none     &bt BT_CLR &none           &rgb_ug RGB_MEFS_CMD 5 &none       &none       &none        &none     &none         &none
-                &none        &none        &none        &none        &macro_ver   &none                                    &none     &none                                             &none       &none       &none        &none     &none         &none
+                &none        &none        &none        &none        &none        &none                                    &none     &none                                             &none       &none       &none        &none     &none         &none
                 &none        &none        &none        &none        &none                     &none             &none     &none     &none      &bl BL_TOG      &rgb_ug RGB_TOG                    &bl BL_INC  &bl BL_DEC   &none     &none         &none
             >;
         };
