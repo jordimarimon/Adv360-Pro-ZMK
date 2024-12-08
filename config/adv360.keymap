@@ -161,7 +161,7 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp L>, <&double_l>;
-            mods = <(MOD_RALT)>;
+            mods = <(MOD_LALT)>;
         };
 
         // Depending on the ALT key press, will output
