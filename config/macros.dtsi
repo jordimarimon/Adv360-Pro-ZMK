@@ -1,0 +1,94 @@
+// Grave accent by it's own
+grave: grave {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&macro_tap &kp GRAVE &kp GRAVE>;
+};
+
+// Tilde by it's own
+tilde: tilde {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings
+        = <&macro_press &kp LSHFT>
+        , <&macro_tap &kp GRAVE &kp GRAVE>
+        , <&macro_release &kp LSHFT>
+        ;
+};
+
+// double L: "l·l"
+double_l: double_l {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&macro_tap &kp L &kp RA(X) &kp L>;
+};
+
+// letter A with the grave accent
+a_grave: a_grave {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&macro_tap &kp GRAVE &kp A>;
+};
+
+// letter A with the accute accent
+a_accute: a_accute {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&macro_tap &kp APOS &kp A>;
+};
+
+// letter O with the grave accent
+o_grave: o_grave {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&macro_tap &kp GRAVE &kp O>;
+};
+
+// letter O with the accute accent
+o_accute: o_accute {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&macro_tap &kp APOS &kp O>;
+};
+
+// letter E with the grave accent
+e_grave: e_grave {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&macro_tap &kp GRAVE &kp E>;
+};
+
+// letter E with the accute accent
+e_accute: e_accute {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&macro_tap &kp APOS &kp E>;
+};
+
+// letter I with the dieresis
+i_umlaut: i_umlaut {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&macro_tap &kp LS(APOS) &kp I>;
+};
+
+// letter I with the accute accent
+i_accute: i_accute {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&macro_tap &kp APOS &kp I>;
+};
+
+// letter U with the dieresis
+u_umlaut: u_umlaut {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&macro_tap &kp LS(APOS) &kp U>;
+};
+
+// letter U with the accute accent
+u_accute: u_accute {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&macro_tap &kp APOS &kp U>;
+};

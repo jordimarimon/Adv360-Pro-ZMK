@@ -1,0 +1,141 @@
+// Shift to toggle between caps
+td_sk: tap_dance_sticky_key {
+    compatible = "zmk,behavior-tap-dance";
+    #binding-cells = <0>;
+    tapping-term-ms = <200>;
+    bindings = <&sk LSHIFT>, <&kp CAPSLOCK>;
+};
+
+// Single key to write tilde, equals and plus
+eq_mm: equal_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp EQUAL>, <&tilde>;
+    mods = <(MOD_RALT)>;
+};
+
+// Single, double quotes and the grave accent
+qt_mm: quotes_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp RA(SQT)>, <&grave>;
+    mods = <(MOD_LALT)>;
+};
+
+// When pressed the LALT will trigger the "ñ"
+n_mm: n_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp N>, <&kp RA(N)>;
+    mods = <(MOD_LALT)>;
+};
+
+// When pressed the RALT will trigger the "ç"
+c_mm: c_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp C>, <&kp RA(COMMA)>;
+    mods = <(MOD_RALT)>;
+};
+
+// When pressed the RALT will trigger the "l·l"
+l_mm: l_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp L>, <&double_l>;
+    mods = <(MOD_LALT)>;
+};
+
+// Depending on the ALT key press, will output
+// the letter A with the accute accent or the grave accent
+a_mm1: a_mod_morph_1 {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&a_grave>, <&a_accute>;
+    mods = <(MOD_RALT)>;
+};
+
+// Oututs the letter or with an accent
+a_mm: a_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp A>, <&a_mm1>;
+    mods = <(MOD_LALT|MOD_RALT)>;
+};
+
+// Depending on the ALT key press, will output
+// the letter O with the accute accent or the grave accent
+o_mm1: o_mod_morph_1 {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&o_grave>, <&o_accute>;
+    mods = <(MOD_RALT)>;
+};
+
+// Oututs the letter or with an accent
+o_mm: o_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp O>, <&o_mm1>;
+    mods = <(MOD_LALT|MOD_RALT)>;
+};
+
+// Depending on the ALT key press, will output
+// the letter E with the accute accent or the grave accent
+e_mm1: e_mod_morph_1 {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&e_grave>, <&e_accute>;
+    mods = <(MOD_RALT)>;
+};
+
+// Oututs the letter or with an accent
+e_mm: e_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp E>, <&e_mm1>;
+    mods = <(MOD_LALT|MOD_RALT)>;
+};
+
+// Depending on the ALT key press, will output
+// the letter I with the accute accent or the dieresis
+i_mm1: i_mod_morph_1 {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&i_umlaut>, <&i_accute>;
+    mods = <(MOD_RALT)>;
+};
+
+// Oututs the letter or with an accent
+i_mm: i_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp I>, <&i_mm1>;
+    mods = <(MOD_LALT|MOD_RALT)>;
+};
+
+// Depending on the ALT key press, will output
+// the letter U with the accute accent or the dieresis
+u_mm1: u_mod_morph_1 {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&u_umlaut>, <&u_accute>;
+    mods = <(MOD_RALT)>;
+};
+
+// Oututs the letter or with an accent
+u_mm: u_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp U>, <&u_mm1>;
+    mods = <(MOD_LALT|MOD_RALT)>;
+};
+
+// Outputs "/" or when holding LALT "¿"
+fslh_mm: fslh_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp FSLH>, <&kp RA(FSLH)>;
+    mods = <(MOD_LALT)>;
+};
+
