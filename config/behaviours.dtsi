@@ -1,25 +1,25 @@
-// Shift to toggle between caps
-td_sk: tap_dance_sticky_key {
-    compatible = "zmk,behavior-tap-dance";
-    #binding-cells = <0>;
-    tapping-term-ms = <200>;
-    bindings = <&sk LSHIFT>, <&kp CAPSLOCK>;
+// Left homerow mod
+hm_l: hm_l {
+    compatible = "zmk,behavior-hold-tap";
+    bindings = <&kp>, <&kp>;
+    #binding-cells = <2>;
+    flavor = "balanced";
+    tapping-term-ms = <300>;
+    quick-tap-ms = <175>;
+    require-prior-idle-ms = <150>;
+    hold-trigger-key-positions = <KEYS_R THUMBS_R>;
 };
 
-// Single key to write tilde, equals and plus
-eq_mm: equal_mod_morph {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp EQUAL>, <&tilde>;
-    mods = <(MOD_RALT)>;
-};
-
-// Single, double quotes and the grave accent
-qt_mm: quotes_mod_morph {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp RA(SQT)>, <&grave>;
-    mods = <(MOD_LALT)>;
+// Right homerow mod
+hm_r: hm_r {
+    compatible = "zmk,behavior-hold-tap";
+    bindings = <&kp>, <&kp>;
+    #binding-cells = <2>;
+    flavor = "balanced";
+    tapping-term-ms = <300>;
+    quick-tap-ms = <175>;
+    require-prior-idle-ms = <150>;
+    hold-trigger-key-positions = <KEYS_L THUMBS_L>;
 };
 
 // When pressed the LALT will trigger the "ñ"
@@ -35,107 +35,163 @@ c_mm: c_mod_morph {
     compatible = "zmk,behavior-mod-morph";
     #binding-cells = <0>;
     bindings = <&kp C>, <&kp RA(COMMA)>;
-    mods = <(MOD_RALT)>;
-};
-
-// When pressed the RALT will trigger the "l·l"
-l_mm: l_mod_morph {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp L>, <&double_l>;
     mods = <(MOD_LALT)>;
 };
 
-// Depending on the ALT key press, will output
-// the letter A with the accute accent or the grave accent
-a_mm1: a_mod_morph_1 {
-    compatible = "zmk,behavior-mod-morph";
+// Shift to toggle between caps
+sh_capl: shift_capslock {
+    compatible = "zmk,behavior-tap-dance";
     #binding-cells = <0>;
-    bindings = <&a_grave>, <&a_accute>;
-    mods = <(MOD_RALT)>;
+    tapping-term-ms = <200>;
+    bindings = <&sk LSHIFT>, <&kp CAPSLOCK>;
 };
 
-// Oututs the letter or with an accent
-a_mm: a_mod_morph {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp A>, <&a_mm1>;
-    mods = <(MOD_LALT|MOD_RALT)>;
-};
-
-// Depending on the ALT key press, will output
-// the letter O with the accute accent or the grave accent
-o_mm1: o_mod_morph_1 {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&o_grave>, <&o_accute>;
-    mods = <(MOD_RALT)>;
-};
-
-// Oututs the letter or with an accent
-o_mm: o_mod_morph {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp O>, <&o_mm1>;
-    mods = <(MOD_LALT|MOD_RALT)>;
-};
-
-// Depending on the ALT key press, will output
-// the letter E with the accute accent or the grave accent
-e_mm1: e_mod_morph_1 {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&e_grave>, <&e_accute>;
-    mods = <(MOD_RALT)>;
-};
-
-// Oututs the letter or with an accent
-e_mm: e_mod_morph {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp E>, <&e_mm1>;
-    mods = <(MOD_LALT|MOD_RALT)>;
-};
-
-// Depending on the ALT key press, will output
-// the letter I with the accute accent or the dieresis
-i_mm1: i_mod_morph_1 {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&i_umlaut>, <&i_accute>;
-    mods = <(MOD_RALT)>;
-};
-
-// Oututs the letter or with an accent
-i_mm: i_mod_morph {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp I>, <&i_mm1>;
-    mods = <(MOD_LALT|MOD_RALT)>;
-};
-
-// Depending on the ALT key press, will output
-// the letter U with the accute accent or the dieresis
-u_mm1: u_mod_morph_1 {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&u_umlaut>, <&u_accute>;
-    mods = <(MOD_RALT)>;
-};
-
-// Oututs the letter or with an accent
-u_mm: u_mod_morph {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp U>, <&u_mm1>;
-    mods = <(MOD_LALT|MOD_RALT)>;
-};
-
-// Outputs "/" or when holding LALT "¿"
+// Outputs "/" or when holding SHIFT "\"
 fslh_mm: fslh_mod_morph {
     compatible = "zmk,behavior-mod-morph";
     #binding-cells = <0>;
-    bindings = <&kp FSLH>, <&kp RA(FSLH)>;
+    bindings = <&kp FSLH>, <&kp BSLH>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+};
+
+// Outputs backspace key or when holding SHIFT will
+// output the delete key
+bspc_del: backspace_delete {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp BACKSPACE>, <&kp DELETE>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+};
+
+// Outputs space key or when holding SHIFT will
+// output the tab key
+sp_tab: space_tab {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp SPACE>, <&kp TAB>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+};
+
+// Outputs a dot or when holding SHIFT a comma
+dot_mm: dot_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp DOT>, <&kp COMMA>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+};
+
+// Outputs a ":" or when holding SHIFT a ";"
+semi_mm: semicolon_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp LS(SEMI)>, <&kp SEMI>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+};
+
+// Outputs a "?" or when holding SHIFT a "¿"
+quest_mm: question_mark_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp LS(FSLH)>, <&kp RA(FSLH)>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+};
+
+// Outputs a "&" or when holding SHIFT a "|"
+amp_pip_mm: ampersand_pipe_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp LS(N7)>, <&kp LS(BSLH)>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+};
+
+// Outputs a "$" or when holding SHIFT a "^"
+dol_car_mm: dollar_caret_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp LS(N4)>, <&kp LS(N6)>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+};
+
+// Outputs a "#" or when holding shift a "*"
+has_ast_mm: hashtag_asterisk_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp LS(N3)>, <&kp LS(N8)>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+};
+
+// Outputs a "!" or when holding shift a "¡"
+excl_mm: exclamation_mark_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp LS(N1)>, <&kp RA(N1)>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+};
+
+// Outputs a "%" or when holding shift a "@"
+per_at_mm: percentage_at_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp LS(N5)>, <&kp LS(N2)>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+};
+
+// Homerow mod for the "per_at_mm"
+per_at_hm: per_at_hm {
+    compatible = "zmk,behavior-hold-tap";
+    bindings = <&kp>, <&per_at_mm>;
+    #binding-cells = <2>;
+    flavor = "balanced";
+    tapping-term-ms = <300>;
+    quick-tap-ms = <175>;
+    require-prior-idle-ms = <150>;
+    hold-trigger-key-positions = <KEYS_R THUMBS_R>;
+};
+
+// Outputs a "(" or when holding SHIFT a ")"
+par_mm: parenthesis_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp LS(N9)>, <&kp LS(N0)>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+};
+
+// Outputs a "<" or when holding SHIFT a ">"
+arr_mm: arrow_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp LS(COMMA)>, <&kp LS(DOT)>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+};
+
+// Outputs the left key or when holding LALT the home key
+left_mm: left_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp LEFT>, <&kp HOME>;
     mods = <(MOD_LALT)>;
 };
 
+// Outputs the right key or when holding LALT the end key
+right_mm: right_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp RIGHT>, <&kp END>;
+    mods = <(MOD_LALT)>;
+};
+
+// Outputs the down key or when holding LALT the page down key
+down_mm: down_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp DOWN>, <&kp PAGE_DOWN>;
+    mods = <(MOD_LALT)>;
+};
+
+// Outputs the up key or when holding LALT the page up key
+up_mm: up_mod_morph {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp UP>, <&kp PAGE_UP>;
+    mods = <(MOD_LALT)>;
+};
