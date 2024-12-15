@@ -57,7 +57,7 @@
                 xxx   xxx               xxx             xxx                xxx             xxx          xxx                                                              xxx         xxx          xxx            xxx            xxx           xxx           xxx
                 xxx   &kp Q             &kp W           &kp E              &kp R           &kp T        xxx                                                              xxx         &kp Y        &kp U          &kp I          &kp O         xxx           xxx
                 xxx   &hm_l LGUI A      &hm_l LALT S    &hm_l LSFT D       &hm_l LCTL F    &kp G        xxx       &tog LAYER_FN_MOD xxx      xxx      &tog LAYER_NUM_SYM xxx         &kp H        &hm_r RCTL J   &hm_r RSFT K   &hm_r LALT L  &hm_r RGUI P  xxx
-                xxx   &kp Z             &kp X           &c_mm              &kp V           &kp B                                    &sh_capl &sh_capl                                &n_mm        &kp M          &dot_mm        &semi_mm      &fslh_mm      xxx
+                xxx   &kp Z             &kp X           &c_mm              &kp V           &kp B                                    xxx      xxx                                     &n_mm        &kp M          &dot_mm        &semi_mm      &fslh_mm      xxx
                 xxx   xxx               xxx             xxx                xxx                          &bspc_del &kp ESC           xxx      xxx      &kp ENTER          &sp_tab                  xxx            xxx            xxx           xxx           xxx
             >;
         };
@@ -67,7 +67,7 @@
                 xxx   xxx               xxx             xxx                xxx             xxx          xxx                                                              xxx         xxx          xxx            xxx            xxx           xxx           xxx
                 xxx   &kp APOS          &par_mm         &kp GRAVE          &arr_mm         &dol_car_mm  xxx                                                              xxx         &kp N0       &kp N1         &kp N2         &kp N3        &kp N4        xxx
                 xxx   &per_at_hm LGUI 0 &hm_l LALT LBKT &hm_l LSFT RA(SQT) &hm_l LCTL RBKT &amp_pip_mm  xxx       ___               xxx      xxx      ___                xxx         &kp N5       &hm_r RCTL N6  &hm_r RSFT N7  &hm_r LALT N8 &hm_r RGUI N9 xxx
-                xxx   &excl_mm          &has_ast_mm     &kp EQUAL          &kp MINUS       &quest_mm                                ___      ___                                     &kp RA(X)    xxx            ___            ___           ___           xxx
+                xxx   &excl_mm          &has_ast_mm     &kp EQUAL          &kp MINUS       &quest_mm                                xxx      xxx                                     xxx          xxx            ___            ___           ___           xxx
                 xxx   xxx               xxx             xxx                xxx                          ___       ___               xxx      xxx      ___                ___                      xxx            xxx            xxx           xxx           xxx
             >;
         };
@@ -77,7 +77,7 @@
                 xxx   xxx               xxx             xxx                xxx             xxx          &bootloader                                                      &bootloader xxx          xxx            xxx            xxx           xxx             xxx
                 xxx   &kp F1            &kp F2          &kp F3             &kp F4          &kp F5       xxx                                                              &bt BT_CLR  &bt BT_SEL 0 &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3  &bt BT_SEL 4    xxx
                 xxx   &hm_l LGUI F6     &hm_l LALT F7   &hm_l LSFT F8      &hm_l LCTL F9   &kp F10      xxx       ___               xxx      xxx      ___                xxx         &left_mm     &down_mm       &up_mm         &right_mm     &kp PRINTSCREEN xxx
-                xxx   &kp F11           &kp F12         xxx                xxx             xxx                                      ___      ___                                     &kp C_VOL_DN &kp C_VOL_UP   &kp C_MUTE     xxx           xxx             xxx
+                xxx   &kp F11           &kp F12         xxx                xxx             xxx                                      xxx      xxx                                     &kp C_VOL_DN &kp C_VOL_UP   &kp C_MUTE     &kp CAPSLOCK  xxx             xxx
                 xxx   xxx               xxx             xxx                xxx                          ___       ___               xxx      xxx      ___                ___                      xxx            xxx            xxx           xxx             xxx
             >;
         };

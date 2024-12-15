@@ -38,14 +38,6 @@ c_mm: c_mod_morph {
     mods = <(MOD_LALT)>;
 };
 
-// Shift to toggle between caps
-sh_capl: shift_capslock {
-    compatible = "zmk,behavior-tap-dance";
-    #binding-cells = <0>;
-    tapping-term-ms = <200>;
-    bindings = <&sk LSHIFT>, <&kp CAPSLOCK>;
-};
-
 // Outputs "/" or when holding SHIFT "\"
 fslh_mm: fslh_mod_morph {
     compatible = "zmk,behavior-mod-morph";
@@ -72,12 +64,21 @@ sp_tab: space_tab {
     mods = <(MOD_LSFT|MOD_RSFT)>;
 };
 
-// Outputs a dot or when holding SHIFT a comma
+// Outputs a comma or when holding LALT a middle dot
+dot_mm1: dot_mod_morph_1 {
+    compatible = "zmk,behavior-mod-morph";
+    #binding-cells = <0>;
+    bindings = <&kp COMMA>, <&kp RA(X)>;
+    mods = <(MOD_LALT)>;
+};
+
+// Outputs a dot or when holding SHIFT a comma or when
+// holding LALT a middle dot
 dot_mm: dot_mod_morph {
     compatible = "zmk,behavior-mod-morph";
     #binding-cells = <0>;
-    bindings = <&kp DOT>, <&kp COMMA>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
+    bindings = <&kp DOT>, <&dot_mm1>;
+    mods = <(MOD_LSFT|MOD_RSFT|MOD_LALT)>;
 };
 
 // Outputs a ":" or when holding SHIFT a ";"
