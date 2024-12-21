@@ -30,20 +30,12 @@ n_mm: n_mod_morph {
     mods = <(MOD_LALT)>;
 };
 
-// When pressed the RALT will trigger the "ç"
+// When pressed the LALT will trigger the "ç"
 c_mm: c_mod_morph {
     compatible = "zmk,behavior-mod-morph";
     #binding-cells = <0>;
     bindings = <&kp C>, <&kp RA(COMMA)>;
     mods = <(MOD_LALT)>;
-};
-
-// Outputs "/" or when holding SHIFT "\"
-fslh_mm: fslh_mod_morph {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp FSLH>, <&kp BSLH>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
 };
 
 // Outputs backspace key or when holding SHIFT will
@@ -62,137 +54,4 @@ sp_tab: space_tab {
     #binding-cells = <0>;
     bindings = <&kp SPACE>, <&kp TAB>;
     mods = <(MOD_LSFT|MOD_RSFT)>;
-};
-
-// Outputs a comma or when holding LALT a middle dot
-dot_mm1: dot_mod_morph_1 {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp COMMA>, <&kp RA(X)>;
-    mods = <(MOD_LALT)>;
-};
-
-// Outputs a dot or when holding SHIFT a comma or when
-// holding LALT a middle dot
-dot_mm: dot_mod_morph {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp DOT>, <&dot_mm1>;
-    mods = <(MOD_LSFT|MOD_RSFT|MOD_LALT)>;
-};
-
-// Outputs a ":" or when holding SHIFT a ";"
-semi_mm: semicolon_mod_morph {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp LS(SEMI)>, <&kp SEMI>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-};
-
-// Outputs a "?" or when holding SHIFT a "¿"
-quest_mm: question_mark_mod_morph {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp LS(FSLH)>, <&kp RA(FSLH)>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-};
-
-// Outputs a "&" or when holding SHIFT a "|"
-amp_pip_mm: ampersand_pipe_mod_morph {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp LS(N7)>, <&kp LS(BSLH)>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-};
-
-// Outputs a "$" or when holding SHIFT a "^"
-dol_car_mm: dollar_caret_mod_morph {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp LS(N4)>, <&kp LS(N6)>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-};
-
-// Outputs a "#" or when holding shift a "*"
-has_ast_mm: hashtag_asterisk_mod_morph {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp LS(N3)>, <&kp LS(N8)>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-};
-
-// Outputs a "!" or when holding shift a "¡"
-excl_mm: exclamation_mark_mod_morph {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp LS(N1)>, <&kp RA(N1)>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-};
-
-// Outputs a "%" or when holding shift a "@"
-per_at_mm: percentage_at_mod_morph {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp LS(N5)>, <&kp LS(N2)>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-};
-
-// Homerow mod for the "per_at_mm"
-per_at_hm: per_at_hm {
-    compatible = "zmk,behavior-hold-tap";
-    bindings = <&kp>, <&per_at_mm>;
-    #binding-cells = <2>;
-    flavor = "balanced";
-    tapping-term-ms = <200>;
-    quick-tap-ms = <175>;
-    require-prior-idle-ms = <150>;
-    hold-trigger-key-positions = <KEYS_R THUMBS_R>;
-};
-
-// Outputs a "(" or when holding SHIFT a ")"
-par_mm: parenthesis_mod_morph {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp LS(N9)>, <&kp LS(N0)>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-};
-
-// Outputs a "<" or when holding SHIFT a ">"
-arr_mm: arrow_mod_morph {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp LS(COMMA)>, <&kp LS(DOT)>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-};
-
-// Outputs the left key or when holding LALT the home key
-left_mm: left_mod_morph {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp LEFT>, <&kp HOME>;
-    mods = <(MOD_LALT)>;
-};
-
-// Outputs the right key or when holding LALT the end key
-right_mm: right_mod_morph {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp RIGHT>, <&kp END>;
-    mods = <(MOD_LALT)>;
-};
-
-// Outputs the down key or when holding LALT the page down key
-down_mm: down_mod_morph {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp DOWN>, <&kp PAGE_DOWN>;
-    mods = <(MOD_LALT)>;
-};
-
-// Outputs the up key or when holding LALT the page up key
-up_mm: up_mod_morph {
-    compatible = "zmk,behavior-mod-morph";
-    #binding-cells = <0>;
-    bindings = <&kp UP>, <&kp PAGE_UP>;
-    mods = <(MOD_LALT)>;
 };

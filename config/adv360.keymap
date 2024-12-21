@@ -14,10 +14,10 @@
 #define ___ &trans
 #define xxx &none
 
-// Human readable names for the layers
 #define LAYER_DEFAULT 0
-#define LAYER_NUM_SYM 1
-#define LAYER_FN_MOD  2
+#define LAYER_SYM     1
+#define LAYER_NUM     2
+#define LAYER_FN_MOD  3
 
 // assets/key-positions.md
 #define KEYS_L   0  1  2  3  4  5  6 \
@@ -49,35 +49,53 @@
         #include "behaviours.dtsi"
     };
 
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <LAYER_SYM LAYER_NUM>;
+            then-layer = <LAYER_FN_MOD>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             bindings = <
                 xxx   xxx               xxx             xxx                xxx             xxx          xxx                                                              xxx         xxx          xxx            xxx            xxx           xxx           xxx
-                xxx   &kp Q             &kp W           &kp E              &kp R           &kp T        xxx                                                              xxx         &kp Y        &kp U          &kp I          &kp O         xxx           xxx
-                xxx   &hm_l LGUI A      &hm_l LALT S    &hm_l LSFT D       &hm_l LCTL F    &kp G        xxx       &tog LAYER_FN_MOD xxx      xxx      &tog LAYER_NUM_SYM xxx         &kp H        &hm_r RCTL J   &hm_r RSFT K   &hm_r LALT L  &hm_r RGUI P  xxx
-                xxx   &kp Z             &kp X           &c_mm              &kp V           &kp B                                    xxx      xxx                                     &n_mm        &kp M          &dot_mm        &semi_mm      &fslh_mm      xxx
+                xxx   xxx               &kp W           &kp E              &kp R           &kp T        xxx                                                              xxx         &kp Y        &kp U          &kp I          &kp O         xxx           xxx
+                xxx   &hm_l LGUI A      &hm_l LALT S    &hm_l LSFT D       &hm_l LCTL F    &kp G        xxx       &tog LAYER_NUM    xxx      xxx      &tog LAYER_SYM     xxx         &kp H        &hm_r RCTL J   &hm_r RSFT K   &hm_r LALT L  &hm_r RGUI P  xxx
+                xxx   &kp Z             &kp X           &c_mm              &kp V           &kp B                                    xxx      xxx                                     &n_mm        &kp M          &kp Q          xxx           xxx           xxx
                 xxx   xxx               xxx             xxx                xxx                          &bspc_del &kp ESC           xxx      xxx      &kp ENTER          &sp_tab                  xxx            xxx            xxx           xxx           xxx
             >;
         };
 
-        num_sym_layer {
+        sym_layer {
             bindings = <
-                xxx   xxx               xxx             xxx                xxx             xxx          xxx                                                              xxx         xxx          xxx            xxx            xxx           xxx           xxx
-                xxx   &kp APOS          &par_mm         &kp GRAVE          &arr_mm         &dol_car_mm  xxx                                                              xxx         &kp N0       &kp N1         &kp N2         &kp N3        &kp N4        xxx
-                xxx   &per_at_hm LGUI 0 &hm_l LALT LBKT &hm_l LSFT RA(SQT) &hm_l LCTL RBKT &amp_pip_mm  xxx       ___               xxx      xxx      ___                xxx         &kp N5       &hm_r RCTL N6  &hm_r RSFT N7  &hm_r LALT N8 &hm_r RGUI N9 xxx
-                xxx   &excl_mm          &has_ast_mm     &kp EQUAL          &kp MINUS       &quest_mm                                xxx      xxx                                     xxx          xxx            ___            ___           ___           xxx
-                xxx   xxx               xxx             xxx                xxx                          ___       ___               xxx      xxx      ___                ___                      xxx            xxx            xxx           xxx           xxx
+                xxx   xxx               xxx             xxx                xxx              xxx           xxx                                                              xxx xxx          xxx               xxx            xxx               xxx             xxx
+                xxx   xxx               &kp LS(COMMA)   &kp LS(RA(SQT))    &kp LS(DOT)      &kp LS(N4)    xxx                                                              xxx &kp LS(N6)   &kp LBKT          &kp LS(SEMI)   &kp RBKT          xxx             xxx
+                xxx   &hm_l LGUI LS(N5) &hm_l LALT SEMI &hm_l LSFT RA(SQT) &hm_l LCTL EQUAL &kp LS(EQUAL) xxx       ___               xxx      xxx      ___                xxx &kp LS(N7)   &hm_r RCTL LS(N9) &hm_r RSFT DOT &hm_r LALT LS(N0) &hm_r RGUI FSLH xxx
+                xxx   &kp LS(N1)        &kp LS(N8)      &kp GRAVE          &kp MINUS        &kp LS(FSLH)                              xxx      xxx                             &kp LS(BSLH) &kp LS(LBKT)      &kp COMMA      &kp LS(RBKT)      &kp LS(N3)      xxx
+                xxx   xxx               xxx             xxx                xxx                            ___       ___               xxx      xxx      ___                ___              xxx               xxx            xxx               xxx             xxx
+            >;
+        };
+
+        num_layer {
+            bindings = <
+                xxx   xxx               xxx               xxx                  xxx                  xxx          xxx                                                              xxx         xxx          xxx            xxx            xxx           xxx           xxx
+                xxx   xxx               xxx               &kp BSLH             &kp RA(X)            xxx          xxx                                                              xxx         xxx          &kp N7         &kp N8         &kp N9        xxx           xxx
+                xxx   &hm_l LGUI RA(N1) &hm_l LALT LS(N2) &hm_l LSFT LS(GRAVE) &hm_l LCTL LS(MINUS) &kp RA(FSLH) xxx       ___               xxx      xxx      ___                xxx         xxx          &hm_r RCTL N4  &hm_r RSFT N5  &hm_r LALT N6 &hm_r RGUI N0 xxx
+                xxx   xxx               xxx               &kp APOS             &kp LS(APOS)         xxx                                      xxx      xxx                                     xxx          &kp N1         &kp N2         &kp N3        xxx           xxx
+                xxx   xxx               xxx               xxx                  xxx                               ___       ___               xxx      xxx      ___                ___                      xxx            xxx            xxx           xxx           xxx
             >;
         };
 
         fn_command_layer {
             bindings = <
                 xxx   xxx               xxx             xxx                xxx             xxx          &bootloader                                                      &bootloader xxx          xxx            xxx            xxx           xxx             xxx
-                xxx   &kp F1            &kp F2          &kp F3             &kp F4          &kp F5       xxx                                                              &bt BT_CLR  &bt BT_SEL 0 &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3  &bt BT_SEL 4    xxx
-                xxx   &hm_l LGUI F6     &hm_l LALT F7   &hm_l LSFT F8      &hm_l LCTL F9   &kp F10      xxx       ___               xxx      xxx      ___                xxx         &left_mm     &down_mm       &up_mm         &right_mm     &kp PRINTSCREEN xxx
-                xxx   &kp F11           &kp F12         xxx                xxx             xxx                                      xxx      xxx                                     &kp C_VOL_DN &kp C_VOL_UP   &kp C_MUTE     &kp CAPSLOCK  xxx             xxx
+                xxx   &kp F1            &kp F2          &kp F3             &kp F4          &kp F5       xxx                                                              xxx         &kp HOME     &kp PAGE_DOWN  &kp PAGE_UP    &kp END       xxx             xxx
+                xxx   &hm_l LGUI F6     &hm_l LALT F7   &hm_l LSFT F8      &hm_l LCTL F9   &kp F10      xxx       ___               xxx      xxx      ___                xxx         &kp LEFT     &kp DOWN       &kp UP         &kp RIGHT     &kp PRINTSCREEN xxx
+                xxx   &kp F11           &kp F12         xxx                xxx             xxx                                      xxx      xxx                                     &kp C_MUTE   &kp C_VOL_DN   &kp C_VOL_UP   &kp CAPSLOCK  xxx             xxx
                 xxx   xxx               xxx             xxx                xxx                          ___       ___               xxx      xxx      ___                ___                      xxx            xxx            xxx           xxx             xxx
             >;
         };
