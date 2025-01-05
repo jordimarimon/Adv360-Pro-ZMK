@@ -40,6 +40,8 @@
                      53       \
                      68 69 70 \
 
+#define MO_TOG(layer) &mo_tog layer layer
+
 / {
     macros {
         #include "macros.dtsi"
@@ -64,7 +66,7 @@
             bindings = <
                 xxx   xxx               xxx             xxx                xxx             xxx          xxx                                                              xxx         xxx          xxx            xxx            xxx           xxx           xxx
                 xxx   xxx               &kp W           &kp E              &kp R           &kp T        xxx                                                              xxx         &kp Y        &kp U          &kp I          &kp O         xxx           xxx
-                xxx   &hm_l LGUI A      &hm_l LALT S    &hm_l LSFT D       &hm_l LCTL F    &kp G        xxx       &tog LAYER_NUM    xxx      xxx      &tog LAYER_SYM     xxx         &kp H        &hm_r RCTL J   &hm_r RSFT K   &hm_r LALT L  &hm_r RGUI P  xxx
+                xxx   &hm_l LGUI A      &hm_l LALT S    &hm_l LSFT D       &hm_l LCTL F    &kp G        xxx       MO_TOG(LAYER_NUM) xxx      xxx      MO_TOG(LAYER_SYM)  xxx         &kp H        &hm_r RCTL J   &hm_r RSFT K   &hm_r LALT L  &hm_r RGUI P  xxx
                 xxx   &kp Z             &kp X           &c_mm              &kp V           &kp B                                    xxx      xxx                                     &n_mm        &kp M          &kp Q          xxx           xxx           xxx
                 xxx   xxx               xxx             xxx                xxx                          &bspc_del &kp ESC           xxx      xxx      &kp ENTER          &sp_tab                  xxx            xxx            xxx           xxx           xxx
             >;

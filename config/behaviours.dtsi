@@ -22,6 +22,15 @@ hm_r: hm_r {
     hold-trigger-key-positions = <KEYS_L THUMBS_L>;
 };
 
+// Momentary layer on hold, toggle layer on tap
+mo_tog: behavior_mo_tog {
+    compatible = "zmk,behavior-hold-tap";
+    #binding-cells = <2>;
+    flavor = "hold-preferred";
+    tapping-term-ms = <200>;
+    bindings = <&mo>, <&tog>;
+};
+
 // When pressed the LALT will trigger the "ñ"
 n_mm: n_mod_morph {
     compatible = "zmk,behavior-mod-morph";
